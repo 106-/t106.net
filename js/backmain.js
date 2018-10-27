@@ -17,7 +17,7 @@ animate();
 
 function init() {
 
-	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer = new THREE.WebGLRenderer( { antialias: true, canvas:document.querySelector('#canvas') } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setClearColor( 0xFFFFFF, 0.0 );
 	renderer.setSize( window.innerWidth, window.innerHeight );

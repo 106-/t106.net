@@ -4,33 +4,16 @@
 		<title>Welcome to t106.net! ^._.^</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			body {
-				background-color: #000;
-				margin: 0px;
-				overflow: hidden;
-			}
-
-			#info {
-				position: absolute;
-				color: #ffffff;
-				top: 0px;
-				width: 100%;
-				padding: 5px;
-				font-family:Monospace;
-				font-size:13px;
-				text-align:center;
-			}
-			a {
-				color: #fff;
-			}
-		</style>
+		<meta name="author" content="106">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet">
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	</head>
 
 	<body>
 
-		<div id="container"></div>
-
+		<canvas id="canvas"></canvas>
 		<script src="js/three.min.js"></script>
 		<script src="js/THREE.MeshLine.js"></script>
 		<script src="js/controls/OrbitControls.js"></script>
@@ -43,5 +26,18 @@
 		<script src='js/objects.js'></script>
 
 		<script src='js/backmain.js'></script>
+		<section id="body">
+			<div class="textbox">
+				<p class="lead">You are now in...</p>
+				<h1 class="display-4">t106.net</h1>
+				<p>
+					<a href="https://twitter.com/___106___"><i class="fab fa-twitter"></i></a>
+					<a href="https://github.com/106-"><i class="fab fa-github"></i></a>
+					<a href="https://www.slideshare.net/__106__"><i class="fab fa-slideshare"></i></a>
+					<a href="https://steamcommunity.com/profiles/76561198127476146/"><i class="fab fa-steam"></i></a>
+				</p>
+			</div>
+		</div>
+		</section>
 	</body>
 </html>
