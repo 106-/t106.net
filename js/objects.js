@@ -9,22 +9,10 @@ Ring = function(interval, inner, outer, separate_num, scene){
 	this.outer_max = new Array(separate_num);
 	this.outer_dots = [];
 	this.inner_dots = [];
-	this.outer_geometry = new THREE.Geometry();
-	this.inner_geometry = new THREE.Geometry();
-	this.vert_geometries = [];
 	this.group = new THREE.Group();
     this.time = 0;
-    
-    this.material = new MeshLineMaterial({
-        lineWidth: linewidth,
-        color: new THREE.Color(0x555555),
-        resolution: resolution,
-        near: 1,
-        far:10,
-        sizeAttenuation: 0,
-        depthTest: true, 
-        useMap: false
-    });
+	this.linecolor = 0x555555;
+	this.linewidth = 0.5;
 
 	// 内周,外周に当たる点を初期化.こいつを動かす
 	for(var i=0; i< 360; i++)
@@ -38,61 +26,45 @@ Ring = function(interval, inner, outer, separate_num, scene){
 	}
 
 	// 外周の点を結びつける
-	this.outer_geometry.vertices = [];
-	this.outer_geometry.vertices.push( this.outer_dots[this.outer_dots.length-1] );
-	this.outer_geometry.vertices.push( this.outer_dots[0] );
+	this.outer_line_dots = []
 	for(var i=0; i<this.outer_dots.length-1; i++)
 	{
-		this.outer_geometry.vertices.push( this.outer_dots[i] );
-		this.outer_geometry.vertices.push( this.outer_dots[i+1] );
+		this.outer_line_dots.push( this.outer_dots[i] );
+		this.outer_line_dots.push( this.outer_dots[i+1] );
 	}
+	this.outer_line_dots.push( this.outer_dots[0] );
+	this.outer_line = new THREE.MeshLine(this.outer_line_dots, this.linewidth, this.linecolor);
+	this.group.add(this.outer_line);
 
 	// 内周の点を結びつける
-	this.inner_geometry.vertices = [];
-	this.inner_geometry.vertices.push( this.inner_dots[this.inner_dots.length-1] );
+	this.inner_line_dots = []
 	for(var i=0; i<this.inner_dots.length-1; i++)
 	{
-		this.inner_geometry.vertices.push( this.inner_dots[i] );
-		this.inner_geometry.vertices.push( this.inner_dots[i+1] );
+		this.inner_line_dots.push( this.inner_dots[i] );
+		this.inner_line_dots.push( this.inner_dots[i+1] );
 	}
+	this.inner_line_dots.push( this.inner_dots[0] );
+	this.inner_line = new THREE.MeshLine(this.inner_line_dots, this.linewidth, this.linecolor);
+	this.group.add(this.inner_line);
 
 	// 垂直線を結びつける
+	this.vert_lines = []
 	for(var i=0; i<separate_num; i++)
 	{
-		this.vert_geometries[i] = new THREE.Geometry();
-		this.vert_geometries[i].vertices = [];
-		this.vert_geometries[i].vertices.push(this.inner_dots[i], this.outer_dots[i]);
+		vert_line = new THREE.MeshLine([this.inner_dots[i], this.outer_dots[i]], this.linewidth, this.linecolor);
+		this.vert_lines.push(vert_line);
+		this.group.add(vert_line);
 	}
 
-	// MeshLineの初期化
-	this.outer_meshline = new MeshLine();
-	this.outer_meshline.setGeometry(this.outer_geometry);
-	this.outer_mesh = new THREE.Mesh(this.outer_meshline.geometry, this.material);
-	this.group.add(this.outer_mesh);
-	this.inner_meshline = new MeshLine();
-	this.inner_meshline.setGeometry(this.inner_geometry);
-	this.inner_mesh = new THREE.Mesh(this.inner_meshline.geometry, this.material);
-	this.group.add(this.inner_mesh);
-	this.vert_meshlines = [];
-	this.vert_meshes = [];
-	for(var i=0; i<separate_num; i++)
-	{
-		this.vert_meshlines[i] = new MeshLine();
-		this.vert_meshlines[i].setGeometry(this.vert_geometries[i]);
-		this.vert_meshes[i] = new THREE.Mesh(this.vert_meshlines[i].geometry, this.material);
-		this.group.add(this.vert_meshes[i]);
-	}
-	//scene.add(this.group);
 }
 
 Ring.prototype.update = function(){
 	this.dots_update();
-	this.outer_meshline.setGeometry(this.outer_geometry);
-	this.outer_geometry.verticesNeedUpdate = true;
+	this.outer_line.geometry.needsUpdate = true;
+
 	for(var i=0; i<this.separate_num; i++)
 	{
-		this.vert_meshlines[i].setGeometry(this.vert_geometries[i]);
-		this.vert_geometries[i].verticesNeedUpdate = true;
+		this.vert_lines[i].geometry.needsUpdate = true;
 	}
 }
 
