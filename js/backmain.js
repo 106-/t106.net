@@ -5,7 +5,6 @@ if ( WEBGL.isWebGLAvailable() === false ) {
 var renderer, scene, camera, controls;
 var fifthform;
 var gui, stats;
-var linewidth = 10;
 var resolution = new THREE.Vector3(window.innerWidth, window.innerHeight);
 
 radians = function(deg){
