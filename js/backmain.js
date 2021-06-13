@@ -1,8 +1,6 @@
 
 var renderer, scene, camera, controls;
 var fifthform;
-var gui, stats;
-var linewidth = 10;
 var resolution = new THREE.Vector3(window.innerWidth, window.innerHeight);
 
 radians = function(deg){
@@ -42,7 +40,5 @@ function onWindowResize() {
 function animate() {
 	requestAnimationFrame( animate );
 	fifthform.update();
-	renderer.setClearColor( 0xFFFFFF, 0 );
-	renderer.setViewport( 0, 0, window.innerWidth, window.innerHeight );
 	renderer.render( scene, camera );
 }

@@ -1,6 +1,5 @@
 
-
-Ring = function(interval, inner, outer, separate_num, scene){
+Ring = function(interval, inner, outer, separate_num){
 	this.separate_num = separate_num;
 	this.interval = interval;
 	this.inner = inner;
@@ -16,7 +15,7 @@ Ring = function(interval, inner, outer, separate_num, scene){
     this.time = 0;
     
     this.material = new MeshLineMaterial({
-        lineWidth: linewidth,
+        lineWidth: 10,
         color: new THREE.Color(0x555555),
         resolution: resolution,
         near: 1,
@@ -38,76 +37,66 @@ Ring = function(interval, inner, outer, separate_num, scene){
 	}
 
 	// 外周の点を結びつける
-	this.outer_geometry.vertices = [];
-	this.outer_geometry.vertices.push( this.outer_dots[this.outer_dots.length-1] );
-	this.outer_geometry.vertices.push( this.outer_dots[0] );
-	for(var i=0; i<this.outer_dots.length-1; i++)
+	for(var i=0; i<separate_num; i++)
 	{
 		this.outer_geometry.vertices.push( this.outer_dots[i] );
-		this.outer_geometry.vertices.push( this.outer_dots[i+1] );
 	}
+	this.outer_geometry.vertices.push( this.outer_dots[0] );
 
 	// 内周の点を結びつける
-	this.inner_geometry.vertices = [];
-	this.inner_geometry.vertices.push( this.inner_dots[this.inner_dots.length-1] );
-	for(var i=0; i<this.inner_dots.length-1; i++)
+	for(var i=0; i<separate_num; i++)
 	{
 		this.inner_geometry.vertices.push( this.inner_dots[i] );
-		this.inner_geometry.vertices.push( this.inner_dots[i+1] );
 	}
+	this.inner_geometry.vertices.push( this.inner_dots[0] );
 
 	// 垂直線を結びつける
 	for(var i=0; i<separate_num; i++)
 	{
 		this.vert_geometries[i] = new THREE.Geometry();
-		this.vert_geometries[i].vertices = [];
-		this.vert_geometries[i].vertices.push(this.inner_dots[i], this.outer_dots[i]);
+		this.vert_geometries[i].vertices = [this.inner_dots[i], this.outer_dots[i]];
 	}
 
 	// MeshLineの初期化
 	this.outer_meshline = new MeshLine();
 	this.outer_meshline.setGeometry(this.outer_geometry);
-	this.outer_mesh = new THREE.Mesh(this.outer_meshline.geometry, this.material);
-	this.group.add(this.outer_mesh);
+	this.group.add(new THREE.Mesh(this.outer_meshline.geometry, this.material));
+
 	this.inner_meshline = new MeshLine();
 	this.inner_meshline.setGeometry(this.inner_geometry);
-	this.inner_mesh = new THREE.Mesh(this.inner_meshline.geometry, this.material);
-	this.group.add(this.inner_mesh);
+	this.group.add(new THREE.Mesh(this.inner_meshline.geometry, this.material));
+
 	this.vert_meshlines = [];
 	this.vert_meshes = [];
 	for(var i=0; i<separate_num; i++)
 	{
 		this.vert_meshlines[i] = new MeshLine();
 		this.vert_meshlines[i].setGeometry(this.vert_geometries[i]);
-		this.vert_meshes[i] = new THREE.Mesh(this.vert_meshlines[i].geometry, this.material);
-		this.group.add(this.vert_meshes[i]);
+		this.group.add(new THREE.Mesh(this.vert_meshlines[i].geometry, this.material));
 	}
-	//scene.add(this.group);
 }
 
 Ring.prototype.update = function(){
 	this.dots_update();
 	this.outer_meshline.setGeometry(this.outer_geometry);
-	this.outer_geometry.verticesNeedUpdate = true;
 	for(var i=0; i<this.separate_num; i++)
 	{
 		this.vert_meshlines[i].setGeometry(this.vert_geometries[i]);
-		this.vert_geometries[i].verticesNeedUpdate = true;
 	}
 }
 
 Ring.prototype.dots_update = function(){
 	tick = this.time % this.interval;
-	maxtick = this.interval*(1.0/4.0);
+	maxtick = this.interval*0.25;
 
 	if(tick==0)
 	{
-		for(var i=0; i<this.inner_dots.length; i++)
+		for(var i=0; i<this.separate_num; i++)
 		{
 			this.inner_min[i] = this.inner + 2 + (Math.random()-0.5)*2;
 			// ある程度ギザギザにしたいのでこうなっている
 			if(i%2==0)
-				this.outer_max[i] = this.outer + 3 + (Math.random()-0.5)*6;
+				this.outer_max[i] = this.outer + 2 + (Math.random()-0.5)*6;
 			else
 				this.outer_max[i] = this.outer - 2 + (Math.random()-0.5)*6;
 		}
@@ -115,7 +104,7 @@ Ring.prototype.dots_update = function(){
 
 	if(tick<maxtick)
 	{
-		for(var i=0; i<this.outer_dots.length; i++)
+		for(var i=0; i<this.separate_num; i++)
 		{
 			r = this.inner_min[i] + (this.outer_max[i]-this.inner_min[i]) * tick / maxtick;
 			angle = radians(360/this.separate_num*i);
@@ -125,7 +114,7 @@ Ring.prototype.dots_update = function(){
 	}
 	else
 	{
-		for(var i=0; i<this.outer_dots.length; i++)
+		for(var i=0; i<this.separate_num; i++)
 		{
 			r = this.outer_max[i] - (this.outer_max[i]-this.inner_min[i]) * (tick-maxtick) / (this.interval-maxtick);
 			angle = radians(360/this.separate_num*i);
