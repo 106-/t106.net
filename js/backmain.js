@@ -1,6 +1,3 @@
-if ( WEBGL.isWebGLAvailable() === false ) {
-	document.body.appendChild( WEBGL.getWebGLErrorMessage() );
-}
 
 var renderer, scene, camera, controls;
 var fifthform;
@@ -29,17 +26,10 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 	camera.position.set( 0, 0, 50 );
 
-	// controls = new THREE.OrbitControls( camera, renderer.domElement );
-	// controls.minDistance = 10;
-	// controls.maxDistance = 500;
-
 	fifthform = new FifthForm(scene);
 
 	window.addEventListener( 'resize', onWindowResize, false );
 	onWindowResize();
-
-	// stats = new Stats();
-	// document.body.appendChild( stats.dom );
 }
 
 function onWindowResize() {
@@ -51,7 +41,6 @@ function onWindowResize() {
 
 function animate() {
 	requestAnimationFrame( animate );
-	// stats.update();
 	fifthform.update();
 	renderer.setClearColor( 0xFFFFFF, 0 );
 	renderer.setViewport( 0, 0, window.innerWidth, window.innerHeight );
