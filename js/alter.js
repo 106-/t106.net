@@ -7,6 +7,22 @@ function loadScript() {
     }
 };
 
+function getMultinomialRandom(probs) {
+    var rnd = Math.random();
+    if (probs.length == 1) {
+        return 0;
+    }
+    for (var i = 1; i < probs.length; i++) {
+        probs[i] += probs[i - 1];
+    }
+    for (var i = 0; i < probs.length; i++) {
+        if (rnd < probs[i]) {
+            return i;
+        }
+    }
+    return probs.length;
+}
+
 var script_idx = 0;
 var scripts = [];
 var scripts_rez = [
@@ -26,7 +42,8 @@ var scripts_gp = [
 ]
 
 function alter() {
-    if (0) {
+    var idx = getMultinomialRandom([0.3, 0.7]);
+    if (idx == 0) {
         var el = document.createElement("canvas");
         el.id = "canvas";
         document.body.appendChild(el);
