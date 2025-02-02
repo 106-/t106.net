@@ -1,3 +1,4 @@
+// alter.js
 function loadScript() {
     var el = document.createElement('script');
     el.src = scripts[script_idx];
@@ -25,12 +26,13 @@ function getMultinomialRandom(probs) {
 
 var script_idx = 0;
 var scripts = [];
+
 var scripts_rez = [
     "https://cdnjs.cloudflare.com/ajax/libs/three.js/r97/three.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/three.meshline/1.1.0/THREE.MeshLine.min.js",
     "js/rez/objects.js",
-    "js/rez/main.js",
-]
+    "js/rez/main.js"
+];
 var scripts_gp = [
     "https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.1/pixi.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.4.0/tf.min.js",
@@ -38,25 +40,63 @@ var scripts_gp = [
     "https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.4/d3.min.js",
     "js/gp/draw.js",
     "js/gp/data.js",
-    "js/gp/main.js",
-]
+    "js/gp/main.js"
+];
+var scripts_bm = [
+    "js/bm/main.js"
+];
+
+// URL のクエリパラメータを取得するヘルパー関数
+function getQueryParam(param) {
+    return new URLSearchParams(window.location.search).get(param);
+}
 
 function alter() {
-    var idx = getMultinomialRandom([0.3, 0.7]);
-    if (idx == 0) {
-        var el = document.createElement("canvas");
-        el.id = "canvas";
-        document.body.appendChild(el);
+    var mode = getQueryParam("mode");
 
-        scripts = scripts_rez;
+    // モードが明示されている場合は、そのモードで固定
+    if (mode === "rez" || mode === "gp" || mode === "bm") {
+        if (mode === "rez") {
+            // rez 用のコンテナ（canvas）を作成
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_rez;
+        } else if (mode === "gp") {
+            // gp 用のコンテナ（main）を作成
+            var el = document.createElement("main");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_gp;
+        } else if (mode === "bm") {
+            // bm 用（ボルツマンマシン）は canvas を利用する例
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_bm;
+        }
         loadScript();
     } else {
-        var el = document.createElement("main");
-        el.id = "canvas";
-        document.body.appendChild(el);
-
-        scripts = scripts_gp;
+        // クエリパラメータで指定がない場合は従来通り乱数で選択
+        var idx = getMultinomialRandom([0.1, 0.1, 0.9]);
+        if (idx == 0) {
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_rez;
+        } else if (idx == 1) {
+            var el = document.createElement("main");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_gp;
+        } else if (idx == 2) {
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_bm;
+        }
         loadScript();
     }
 }
+
 alter();
