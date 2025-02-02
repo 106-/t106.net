@@ -19,6 +19,24 @@
 		gtag('js', new Date());
 		gtag('config', 'G-97RE4JJMZP');
 	</script>
+
+	<!-- プロフィール部分を隠すためのクエリチェック -->
+	<script>
+		(function () {
+			// URL のクエリパラメータを取得
+			var urlParams = new URLSearchParams(window.location.search);
+			// クエリに noProfile が含まれている場合
+			if (urlParams.has('noProfile')) {
+				document.addEventListener("DOMContentLoaded", function () {
+					var profileSection = document.getElementById("content");
+					if (profileSection) {
+						profileSection.style.display = "none";
+					}
+				});
+			}
+		})();
+	</script>
+
 </head>
 
 <body>
