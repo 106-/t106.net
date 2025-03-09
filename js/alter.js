@@ -45,6 +45,9 @@ var scripts_gp = [
 var scripts_bm = [
     "js/bm/main.js"
 ];
+var scripts_rain = [
+    "js/rain/main.js"
+];
 
 // URL のクエリパラメータを取得するヘルパー関数
 function getQueryParam(param) {
@@ -55,7 +58,7 @@ function alter() {
     var mode = getQueryParam("mode");
 
     // モードが明示されている場合は、そのモードで固定
-    if (mode === "rez" || mode === "gp" || mode === "bm") {
+    if (mode === "rez" || mode === "gp" || mode === "bm" || mode === "rain") {
         if (mode === "rez") {
             // rez 用のコンテナ（canvas）を作成
             var el = document.createElement("canvas");
@@ -74,11 +77,18 @@ function alter() {
             el.id = "canvas";
             document.body.appendChild(el);
             scripts = scripts_bm;
+        } else if (mode === "rain") {
+            // 新しい rain アニメーション用
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_rain;
         }
         loadScript();
     } else {
-        // クエリパラメータで指定がない場合は従来通り乱数で選択
-        var idx = getMultinomialRandom([0.1, 0.1, 0.9]);
+        // クエリパラメータで指定がない場合は乱数で選択
+        // 等確率で4つのモードから選択
+        var idx = getMultinomialRandom([0.25, 0.25, 0.25, 0.25]);
         if (idx == 0) {
             var el = document.createElement("canvas");
             el.id = "canvas";
@@ -94,6 +104,11 @@ function alter() {
             el.id = "canvas";
             document.body.appendChild(el);
             scripts = scripts_bm;
+        } else if (idx == 3) {
+            var el = document.createElement("canvas");
+            el.id = "canvas";
+            document.body.appendChild(el);
+            scripts = scripts_rain;
         }
         loadScript();
     }
