@@ -88,7 +88,9 @@ function alter() {
     } else {
         // クエリパラメータで指定がない場合は乱数で選択
         // 等確率で4つのモードから選択
-        var idx = getMultinomialRandom([0.25, 0.25, 0.25, 0.25]);
+        // var idx = getMultinomialRandom([0.25, 0.25, 0.25, 0.25]);
+        // しばらくは100%でBoltzmann Machine を表示しておきたい
+        var idx = 2;
         if (idx == 0) {
             var el = document.createElement("canvas");
             el.id = "canvas";

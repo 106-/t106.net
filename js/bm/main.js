@@ -92,7 +92,7 @@
 
         // グリッド線の描画（セル境界を薄い線で表示）
         ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 0.3;
         // 縦線
         for (var c = 0; c <= cols; c++) {
             var x = c * cellSize;
