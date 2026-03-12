@@ -1,20 +1,32 @@
 [
   {
-    "repo": "106-/t106.net",
-    "message": "ちょい修正",
-    "sha": "2feb85b",
-    "date": "2026-03-12"
+    "repo": "106-/LoveLetter",
+    "message": "同一ブラウザ内でセッションが持てるようにする",
+    "sha": "f8eea780f8d9132bc9db51d00438ef0fdbc86a78",
+    "date": "2026-03-08"
   },
   {
-    "repo": "106-/t106.net",
-    "message": "🌧️",
-    "sha": "5071a74",
-    "date": "2026-03-10"
+    "repo": "106-/LoveLetter",
+    "message": "パスワード制から部屋リスト制へ",
+    "sha": "424ef76dc1545cdf3bfb654056679630170f0a83",
+    "date": "2026-03-08"
   },
   {
-    "repo": "106-/t106.net",
-    "message": "ボルツマンマシン風の背景を用意",
-    "sha": "de8075b",
-    "date": "2026-03-09"
+    "repo": "106-/LoveLetter",
+    "message": "すべての関数にdocstringを追加",
+    "sha": "7c47e6a6963c650627126077b7c7bf73fdb9433e",
+    "date": "2026-03-08"
+  },
+  {
+    "repo": "106-/LoveLetter",
+    "message": "README.mdを作る",
+    "sha": "a514fa113f3de87b129068e22bd175e515e6a9ec",
+    "date": "2026-03-08"
+  },
+  {
+    "repo": "106-/LoveLetter",
+    "message": "ゲームロジックの分離",
+    "sha": "b8bdb03a359c6b126d2561d77759832256071a1a",
+    "date": "2026-03-08"
   }
 ]

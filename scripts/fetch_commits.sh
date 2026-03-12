@@ -7,33 +7,30 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTPUT="$SCRIPT_DIR/../data/commits.json"
 
-curl -sf "https://api.github.com/users/106-/events/public" | \
-python3 - <<'EOF'
-import json, sys
+# PushEvent から (repo, head_sha, date) を取得
+PUSHES=$(curl -sf "https://api.github.com/users/106-/events/public" | \
+  jq -r '.[] | select(.type == "PushEvent") | [.repo.name, .payload.head, .created_at[:10]] | @tsv')
 
-events = json.load(sys.stdin)
-commits = []
-for ev in events:
-    if ev.get("type") != "PushEvent":
-        continue
-    repo = ev["repo"]["name"]
-    date = ev["created_at"][:10]
-    for c in reversed(ev["payload"].get("commits", [])):
-        msg = c["message"].split("\n")[0]
-        if msg.startswith("Merge "):
-            continue
-        commits.append({
-            "repo": repo,
-            "message": msg,
-            "sha": c["sha"],
-            "date": date
-        })
-        if len(commits) >= 5:
-            break
-    if len(commits) >= 5:
-        break
+result="[]"
+count=0
 
-print(json.dumps(commits, ensure_ascii=False, indent=2))
-EOF > "$OUTPUT"
+while IFS=$'\t' read -r repo sha date; do
+  [ "$count" -ge 5 ] && break
 
+  commit=$(curl -sf "https://api.github.com/repos/$repo/commits/$sha") || continue
+  message=$(echo "$commit" | jq -r '.commit.message | split("\n") | first')
+
+  # マージコミットを除外
+  case "$message" in Merge\ *) continue ;; esac
+
+  result=$(echo "$result" | jq \
+    --arg repo "$repo" \
+    --arg message "$message" \
+    --arg sha "$sha" \
+    --arg date "$date" \
+    '. + [{repo: $repo, message: $message, sha: $sha, date: $date}]')
+  count=$((count + 1))
+done <<< "$PUSHES"
+
+echo "$result" > "$OUTPUT"
 echo "Updated $OUTPUT"

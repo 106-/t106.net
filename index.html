@@ -52,7 +52,7 @@
 				</div>
 				<div class="tab-bar">
 					<button class="tab-btn active" onclick="switchTab('links')">Links</button>
-					<button class="tab-btn" onclick="switchTab('commits')">Commits</button>
+					<button class="tab-btn" onclick="switchTab('commits')">Recent Commits</button>
 				</div>
 				<div id="tab-links" class="tab-pane">
 					<a href="https://github.com/106-" class="link-item" target="_blank" rel="noopener">
@@ -117,7 +117,7 @@
 					list.innerHTML = commits.map(function (c) {
 						var url = 'https://github.com/' + c.repo + '/commit/' + c.sha;
 						return '<a href="' + url + '" class="link-item" target="_blank" rel="noopener">'
-							+ '<div class="link-icon"><i class="fab fa-github"></i></div>'
+							+ '<div class="link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="22" height="22"><line x1="2" y1="12" x2="7" y2="12"/><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><line x1="17" y1="12" x2="22" y2="12"/></svg></div>'
 							+ '<div class="link-content">'
 							+ '<div class="link-title commit-message">' + escapeHtml(c.message) + '</div>'
 							+ '<div class="commit-meta">' + escapeHtml(c.repo) + ' &middot; ' + c.date + '</div>'
