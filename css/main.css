@@ -47,21 +47,6 @@ a:visited {
     font-weight: 500;
 }
 
-.lang-btn {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    padding: 4px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    font-family: Arial, sans-serif;
-}
-
-.lang-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
 
 .panel-divider {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);

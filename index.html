@@ -46,7 +46,6 @@
 			<div class="profile-panel">
 				<div class="panel-header">
 					<span class="panel-title">t106.net</span>
-					<button id="lang-toggle" class="lang-btn" onclick="toggleLang()">EN</button>
 				</div>
 				<div class="panel-divider">
 					<p class="panel-tagline"
@@ -57,50 +56,35 @@
 					<div class="link-icon"><i class="fab fa-twitter"></i></div>
 					<div class="link-content">
 						<div class="link-title">@___106___</div>
-						<div class="link-desc" data-ja="X (Twitter) アカウント" data-en="Follow me on X">X (Twitter) アカウント</div>
 					</div>
 				</a>
 				<a href="https://github.com/106-" class="link-item" target="_blank" rel="noopener">
 					<div class="link-icon"><i class="fab fa-github"></i></div>
 					<div class="link-content">
 						<div class="link-title">github/106-</div>
-						<div class="link-desc" data-ja="GitHubアカウント" data-en="GitHub profile">GitHubアカウント</div>
 					</div>
 				</a>
 				<a href="https://www.slideshare.net/__106__" class="link-item" target="_blank" rel="noopener">
 					<div class="link-icon"><i class="fab fa-slideshare"></i></div>
 					<div class="link-content">
 						<div class="link-title">slideshare/__106__</div>
-						<div class="link-desc" data-ja="スライド資料" data-en="Presentation slides">スライド資料</div>
 					</div>
 				</a>
 				<a href="https://steamcommunity.com/profiles/76561198127476146/" class="link-item" target="_blank" rel="noopener">
 					<div class="link-icon"><i class="fab fa-steam"></i></div>
 					<div class="link-content">
-						<div class="link-title">Steam</div>
-						<div class="link-desc" data-ja="Steamプロフィール" data-en="Steam profile">Steamプロフィール</div>
+						<div class="link-title">Steam/__106__</div>
 					</div>
 				</a>
+				<div class="link-item" style="cursor: default;">
+					<div class="link-icon"><i class="fas fa-envelope"></i></div>
+					<div class="link-content">
+						<div class="link-title">segmentation-fault[at]yandex.com</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
-	<script>
-		(function () {
-			var lang = (navigator.language || navigator.languages?.[0] || 'en').startsWith('ja') ? 'ja' : 'en';
-			function applyLang() {
-				document.querySelectorAll('[data-ja][data-en]').forEach(function (el) {
-					el.textContent = el.getAttribute('data-' + lang);
-				});
-				var btn = document.getElementById('lang-toggle');
-				if (btn) btn.textContent = lang === 'ja' ? 'EN' : 'JA';
-			}
-			window.toggleLang = function () {
-				lang = lang === 'ja' ? 'en' : 'ja';
-				applyLang();
-			};
-			document.addEventListener('DOMContentLoaded', applyLang);
-		})();
-	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
