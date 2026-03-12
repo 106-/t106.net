@@ -114,3 +114,53 @@ a:visited {
     line-height: 1.4;
     font-family: Arial, sans-serif;
 }
+
+.tab-bar {
+    display: flex;
+    gap: 8px;
+    padding: clamp(8px, 2vw, 12px) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #cccccc;
+    padding: 4px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.commit-message {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.commit-meta {
+    color: #888888;
+    font-size: clamp(11px, 2.5vw, 13px);
+    font-family: Arial, sans-serif;
+    margin-top: 2px;
+}
+
+.commit-loading {
+    color: #888888;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    padding: 16px 0;
+    text-align: center;
+}
