@@ -145,6 +145,17 @@ a:visited {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+.link-item--compact {
+    padding: clamp(6px, 1.5vw, 8px) 0;
+}
+
+.link-item--compact .link-icon {
+    width: clamp(28px, 5vw, 32px);
+    height: clamp(28px, 5vw, 32px);
+    font-size: clamp(12px, 2.5vw, 14px);
+    margin-right: clamp(8px, 2vw, 12px);
+}
+
 .commit-message {
     white-space: nowrap;
     overflow: hidden;

@@ -1,5 +1,17 @@
 [
   {
+    "repo": "106-/futaba2dat",
+    "message": "頻繁に更新されるべきところはキャッシュしないようにする",
+    "sha": "f895e7abda5449ab3aeca47bf618147a845a92b0",
+    "date": "2026-03-12"
+  },
+  {
+    "repo": "106-/cloudflare-ddns",
+    "message": "INITIAL COMMIT",
+    "sha": "a662c3055d9c81edc9d2d13ac7f0e47e4244f5a7",
+    "date": "2026-03-11"
+  },
+  {
     "repo": "106-/LoveLetter",
     "message": "同一ブラウザ内でセッションが持てるようにする",
     "sha": "f8eea780f8d9132bc9db51d00438ef0fdbc86a78",
@@ -25,8 +37,26 @@
   },
   {
     "repo": "106-/LoveLetter",
+    "message": "動作をreactにする",
+    "sha": "77fed85470f5cae7488cb9a26afce1f550d9cdb8",
+    "date": "2026-03-08"
+  },
+  {
+    "repo": "106-/LoveLetter",
     "message": "ゲームロジックの分離",
     "sha": "b8bdb03a359c6b126d2561d77759832256071a1a",
     "date": "2026-03-08"
+  },
+  {
+    "repo": "106-/LoveLetter",
+    "message": "カードが配られない事がある不具合を修正 & フォーマット",
+    "sha": "05c16fdb3355c0687f69a63eecabc8c5d46f6ffc",
+    "date": "2026-03-08"
+  },
+  {
+    "repo": "106-/LoveLetter",
+    "message": "dockerfileのついか",
+    "sha": "947b45bd5c716b4b265924559e55c7f3aadd73dd",
+    "date": "2026-03-06"
   }
 ]
