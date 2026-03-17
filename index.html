@@ -1,94 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>Welcome to t106.net! ^._.^</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="author" content="106" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Halant"
+      rel="stylesheet"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+      rel="stylesheet"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-97RE4JJMZP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-97RE4JJMZP");
+    </script>
 
-<head>
-	<title>Welcome to t106.net! ^._.^</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="author" content="106">
-	<link href="css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Halant" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-97RE4JJMZP"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'G-97RE4JJMZP');
-	</script>
+    <!-- プロフィール部分を隠すためのクエリチェック -->
+    <script>
+      (function () {
+        // URL のクエリパラメータを取得
+        var urlParams = new URLSearchParams(window.location.search);
+        // クエリに noProfile が含まれている場合
+        if (urlParams.has("noProfile")) {
+          document.addEventListener("DOMContentLoaded", function () {
+            var profileSection = document.getElementById("content");
+            if (profileSection) {
+              profileSection.style.display = "none";
+            }
+          });
+        }
+      })();
+    </script>
+  </head>
 
-	<!-- プロフィール部分を隠すためのクエリチェック -->
-	<script>
-		(function () {
-			// URL のクエリパラメータを取得
-			var urlParams = new URLSearchParams(window.location.search);
-			// クエリに noProfile が含まれている場合
-			if (urlParams.has('noProfile')) {
-				document.addEventListener("DOMContentLoaded", function () {
-					var profileSection = document.getElementById("content");
-					if (profileSection) {
-						profileSection.style.display = "none";
-					}
-				});
-			}
-		})();
-	</script>
-
-</head>
-
-<body>
-	<script src="js/alter.js"></script>
-	<section id="content">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="profile-panel">
-				<div class="panel-header">
-					<span class="panel-title">t106.net</span>
-				</div>
-				<div class="panel-divider">
-					<p class="panel-tagline">Data Scientist / Machine Learning Engineer</p>
-				</div>
-				<a href="https://github.com/106-" class="link-item" target="_blank" rel="noopener">
-					<div class="link-icon"><i class="fab fa-github"></i></div>
-					<div class="link-content">
-						<div class="link-title">github/106-</div>
-					</div>
-				</a>
-				<a href="https://twitter.com/___106___" class="link-item" target="_blank" rel="noopener">
-					<div class="link-icon"><i class="fab fa-twitter"></i></div>
-					<div class="link-content">
-						<div class="link-title">@___106___</div>
-					</div>
-				</a>
-				<a href="https://www.slideshare.net/__106__" class="link-item" target="_blank" rel="noopener">
-					<div class="link-icon"><i class="fab fa-slideshare"></i></div>
-					<div class="link-content">
-						<div class="link-title">slideshare/__106__</div>
-					</div>
-				</a>
-				<a href="https://steamcommunity.com/profiles/76561198127476146/" class="link-item" target="_blank" rel="noopener">
-					<div class="link-icon"><i class="fab fa-steam"></i></div>
-					<div class="link-content">
-						<div class="link-title">Steam/__106__</div>
-					</div>
-				</a>
-				<div class="link-item" style="cursor: default;">
-					<div class="link-icon"><i class="fas fa-envelope"></i></div>
-					<div class="link-content">
-						<div class="link-title">segmentation-fault[at]yandex.com</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-</body>
-
+  <body>
+    <script src="js/alter.js"></script>
+    <section id="content">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="profile-panel">
+          <div class="panel-header">
+            <span class="panel-title">t106.net</span>
+          </div>
+          <div class="panel-divider">
+            <p class="panel-tagline">
+              Data Scientist / Machine Learning Engineer
+            </p>
+          </div>
+          <a
+            href="https://github.com/106-"
+            class="link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="link-icon"><i class="fab fa-github"></i></div>
+            <div class="link-content">
+              <div class="link-title">github/106-</div>
+            </div>
+          </a>
+          <a
+            href="https://twitter.com/___106___"
+            class="link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="link-icon"><i class="fab fa-twitter"></i></div>
+            <div class="link-content">
+              <div class="link-title">@___106___</div>
+            </div>
+          </a>
+          <a
+            href="https://www.slideshare.net/__106__"
+            class="link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="link-icon"><i class="fab fa-slideshare"></i></div>
+            <div class="link-content">
+              <div class="link-title">slideshare/__106__</div>
+            </div>
+          </a>
+          <a
+            href="https://steamcommunity.com/profiles/76561198127476146/"
+            class="link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="link-icon"><i class="fab fa-steam"></i></div>
+            <div class="link-content">
+              <div class="link-title">Steam/__106__</div>
+            </div>
+          </a>
+          <div class="link-item" style="cursor: default">
+            <div class="link-icon"><i class="fas fa-envelope"></i></div>
+            <div class="link-content">
+              <div class="link-title">segmentation-fault[at]yandex.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
