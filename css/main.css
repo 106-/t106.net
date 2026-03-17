@@ -114,3 +114,13 @@ a:visited {
   line-height: 1.4;
   font-family: Arial, sans-serif;
 }
+
+@media (max-width: 576px) {
+  .panel-header {
+    justify-content: center;
+  }
+
+  .panel-tagline {
+    text-align: center;
+  }
+}
